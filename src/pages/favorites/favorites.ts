@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Quote} from "../../data/models";
 import {QuotesService} from "../../services/qoute.service";
@@ -16,13 +16,17 @@ import {QuotePage} from "../quote/quote";
   selector: 'page-favorites',
   templateUrl: 'favorites.html',
 })
-export class FavoritesPage {
+export class FavoritesPage implements OnInit {
   public quotes: Quote[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public quotesService: QuotesService,
               private  modalController: ModalController) {
+  }
+
+  ngOnInit(): void {
+    this.quotes = this.quotesService.gett();
   }
 
   ionViewDidLoad() {
@@ -34,8 +38,13 @@ export class FavoritesPage {
   }
 
   onClick(item: Quote) {
-    const modal = this.modalController.create('QuotePage',);
+    const modal = this.modalController.create('QuotePage', item);
     modal.present();
+    modal.onDidDismiss((unFav: boolean) => {
+      console.log('unFav ', unFav)
+      if (unFav) this.quotesService.removee(item);
+      this.ionViewWillEnter();
+    })
 
   }
 

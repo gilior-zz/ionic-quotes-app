@@ -24,10 +24,11 @@ export class QuotePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuotePage');
+    this.quote = this.navParams.data;
   }
 
-  onClose() {
-    this.viewController.dismiss();
+  onClose(unFav:boolean=false) {
+    this.viewController.dismiss(unFav);
   }
 
 }

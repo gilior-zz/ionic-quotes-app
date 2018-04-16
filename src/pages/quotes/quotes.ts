@@ -58,4 +58,13 @@ export class QuotesPage implements OnInit {
     });
     alert.present();
   }
+
+  onUnFavorite(item: Quote) {
+
+  }
+
+  isFavorite(item: Quote): boolean {
+    const c = this.quotesService.isBelong(item);
+    return c;
+  }
 }
