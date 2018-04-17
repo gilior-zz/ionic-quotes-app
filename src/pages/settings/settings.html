@@ -8,11 +8,26 @@
 
   <ion-navbar>
     <ion-title>settings</ion-title>
+    <ion-buttons start>
+      <!--<button ion-button (click)="onOpenMenu()">-->
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-label>alternative back-ground</ion-label>
+    </ion-col>
+    <ion-col>
+      <ion-toggle [checked]="isAlternateColor" (ionChange)="onToggle($event)"></ion-toggle>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

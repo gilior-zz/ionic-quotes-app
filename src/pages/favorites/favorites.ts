@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, MenuController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Quote} from "../../data/models";
 import {QuotesService} from "../../services/qoute.service";
 import {QuotePage} from "../quote/quote";
+import {SettingsService} from "../../services/setrtings.service";
 
 /**
  * Generated class for the FavoritesPage page.
@@ -22,7 +23,13 @@ export class FavoritesPage implements OnInit {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public quotesService: QuotesService,
-              private  modalController: ModalController) {
+              private  modalController: ModalController,
+              private menuController: MenuController,
+              private  settingsService: SettingsService) {
+  }
+
+  get backColor(): string {
+    return this.settingsService.isAlternateColor ? 'altQuoteBC' : 'quoteBC';
   }
 
   ngOnInit(): void {
@@ -51,4 +58,11 @@ export class FavoritesPage implements OnInit {
     this.ionViewWillEnter();
   }
 
+  onOpenMenu() {
+    this.menuController.open();
+  }
+
+  get isAlternateColor(): boolean {
+    return this.settingsService.isAlternateColor;
+  }
 }

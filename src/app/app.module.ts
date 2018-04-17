@@ -7,6 +7,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {MyApp} from './app.component'
 import {TabsPage} from "../pages/tabs/tabs";
 import {QuotesService} from "../services/qoute.service";
+import {SettingsService} from "../services/setrtings.service";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {QuotesService} from "../services/qoute.service";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    QuotesService
+    QuotesService,
+    SettingsService
   ]
 })
 export class AppModule {

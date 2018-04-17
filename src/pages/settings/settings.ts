@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, Toggle} from 'ionic-angular';
+import {BaseInput} from "ionic-angular/util/base-input";
+import {SettingsService} from "../../services/setrtings.service";
 
 /**
  * Generated class for the SettingsPage page.
@@ -15,11 +17,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private  settingsService: SettingsService) {
+  }
+
+  get isAlternateColor(): boolean {
+    return this.settingsService.isAlternateColor;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
+  }
+
+  onToggle(toggle: Toggle) {
+    console.log('toggle ', toggle);
+    this.settingsService.isAlternateColor = toggle.checked;
   }
 
 }
