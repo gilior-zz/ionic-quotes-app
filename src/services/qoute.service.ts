@@ -42,7 +42,7 @@ export class QuotesService {
 
   isBelong(quote: Quote) {
     let index = this.quotes.findIndex(i => i.id === quote.id);
-    return index != 1;
+    return index != -1;
   }
 
 }

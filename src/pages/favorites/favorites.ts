@@ -42,10 +42,13 @@ export class FavoritesPage implements OnInit {
     modal.present();
     modal.onDidDismiss((unFav: boolean) => {
       console.log('unFav ', unFav)
-      if (unFav) this.quotesService.removee(item);
-      this.ionViewWillEnter();
+      if (unFav) this.onRemove(item);
     })
+  }
 
+  onRemove(item: Quote) {
+    this.quotesService.removee(item);
+    this.ionViewWillEnter();
   }
 
 }

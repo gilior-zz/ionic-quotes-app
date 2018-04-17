@@ -60,7 +60,7 @@ export class QuotesPage implements OnInit {
   }
 
   onUnFavorite(item: Quote) {
-
+    this.quotesService.removee(item);
   }
 
   isFavorite(item: Quote): boolean {
